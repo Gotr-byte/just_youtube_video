@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Redirects standard YouTube watch pages to embed view.",
   "permissions": [
-    "tabs" // Request permission to access and change tabs
+    "declarativeNetRequest"
   ],
   "host_permissions": [
     "*://www.youtube.com/watch*"
@@ -15,4 +15,3 @@
   "action": {
     "default_title": "YouTube Embed Redirect"
   }
-}
