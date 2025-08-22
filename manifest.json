@@ -1,22 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "Force YouTube Embed View",
+  "name": "YouTube Embed Redirect",
   "version": "1.0",
-  "description": "Redirects YouTube videos to their embed view.",
+  "description": "Redirects standard YouTube watch pages to embed view.",
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "declarativeNetRequest",
-    "declarativeNetRequestWithHostAccess",
-    "host_permissions"
+    "declarativeNetRequest" // Request the new API permission
   ],
   "host_permissions": [
-    "*://www.youtube.com/*"
+    "*://www.youtube.com/watch*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "YouTube Embed Only"
+    "default_title": "YouTube Embed Redirect"
   }
 }
