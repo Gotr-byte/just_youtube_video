@@ -1,31 +1,27 @@
-// Rule ID. This can be any unique integer.
 const redirectRuleId = 1;
 
-// Define the rule once on extension installation.
 chrome.runtime.onInstalled.addListener(() => {
-  const redirectRule = {
+  // Rule to redirect www.youtube.com/watch?v=xxxx to www.youtube.com/embed/xxxx
+  const rule = {
     id: redirectRuleId,
-    priority: 1, // Priority of the rule (1 is the highest)
+    priority: 1,
     condition: {
-      urlFilter: "www.youtube.com/watch?*", // Match YouTube watch URLs
-      resourceTypes: ["main_frame"] // Only apply to the main page frame, not images, scripts, etc.
+      urlFilter: '||youtube.com/watch*', // Matches any YouTube watch URL on any subdomain
+      resourceTypes: ['main_frame']
     },
     action: {
-      type: "redirect",
+      type: 'redirect',
       redirect: {
-        transform: {
-          host: "www.youtube.com",
-          path: "/embed/{{videoId}}", // We will use regexSubstitution to get the videoId
-          query: "", // Remove the entire query string (like &feature=share, etc.)
-          fragment: ""
-        }
+        regexSubstitution: 'https://www.youtube.com/embed/\\1' // \\1 is the first capture group
       }
     }
   };
 
-  // Add the rule to the browser's rule set.
+  // Use a regex filter to capture the video ID
+  rule.condition.regexFilter = 'https://www\\.youtube\\.com/watch\\?v=([^&]+)';
+
   chrome.declarativeNetRequest.updateDynamicRules({
-    addRules: [redirectRule],
-    removeRuleIds: [redirectRuleId] // Remove any old rule with the same ID
+    addRules: [rule],
+    removeRuleIds: [redirectRuleId]
   });
 });
