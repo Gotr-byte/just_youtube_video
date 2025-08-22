@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Force YouTube Embed View",
+  "version": "1.0",
+  "description": "Redirects YouTube videos to their embed view.",
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "host_permissions"
+  ],
+  "host_permissions": [
+    "*://www.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "YouTube Embed Only"
+  }
+}
