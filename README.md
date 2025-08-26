@@ -22,7 +22,3 @@ Now test it by navigating to any YouTube video. It should redirect you to the em
 ⚠️ Limitations & Notes
 
 You can't comment, like, or see recommendations in embed mode — it’s just the video.
-
-You may want to exempt playlists, channels, etc., depending on your use case.
-
-If you want to allow a toggle, you can expand this to include a browser action (e.g. enable/disable).
